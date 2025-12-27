@@ -1,0 +1,36 @@
+﻿@model Danciu_Lavinia_Lab4.TimePredictionModel.ModelInput
+
+<form asp-action="Duration" method="post">
+
+    <div class="form-group">
+        <label asp-for="Vendor_id"></label>
+        <select asp-for="Vendor_id" class="form-control">
+            <option value="VTS">VTS</option>
+            <option value="CMT">CMT</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rate_code"></label>
+        <input asp-for="Rate_code" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Passenger_count"></label>
+        <input asp-for="Passenger_count" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Trip_distance"></label>
+        <input asp-for="Trip_distance" class="form-control" />
+    </div>
+
+  
+
+    <button type="submit">Predict</button>
+</form>
+
+@if (ViewBag.Duration != null)
+{
+    <h3>Predicted duration: @ViewBag.Duration sec</h3>
+}
