@@ -91,10 +91,10 @@ namespace Danciu_Lavinia_Lab4
         public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations
-            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(new []{new InputOutputColumnPair(@"vendor_id", @"vendor_id"),new InputOutputColumnPair(@"payment_type", @"payment_type")}, outputKind: OneHotEncodingEstimator.OutputKind.Indicator)      
-                                    .Append(mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"rate_code", @"rate_code"),new InputOutputColumnPair(@"passenger_count", @"passenger_count"),new InputOutputColumnPair(@"trip_time_in_secs", @"trip_time_in_secs"),new InputOutputColumnPair(@"trip_distance", @"trip_distance")}))      
-                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"vendor_id",@"payment_type",@"rate_code",@"passenger_count",@"trip_time_in_secs",@"trip_distance"}))      
-                                    .Append(mlContext.Regression.Trainers.LightGbm(new LightGbmRegressionTrainer.Options(){NumberOfLeaves=4,NumberOfIterations=180,MinimumExampleCountPerLeaf=20,LearningRate=0.9999997766729865,LabelColumnName=@"fare_amount",FeatureColumnName=@"Features",Booster=new GradientBooster.Options(){SubsampleFraction=0.25299929848594216,FeatureFraction=0.7972598433134371,L1Regularization=2E-10,L2Regularization=0.08230418242057447},MaximumBinCountPerFeature=294}));
+            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(@"payment_type", @"payment_type", outputKind: OneHotEncodingEstimator.OutputKind.Indicator)      
+                                    .Append(mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"passenger_count", @"passenger_count"),new InputOutputColumnPair(@"trip_time_in_secs", @"trip_time_in_secs"),new InputOutputColumnPair(@"trip_distance", @"trip_distance")}))      
+                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"payment_type",@"passenger_count",@"trip_time_in_secs",@"trip_distance"}))      
+                                    .Append(mlContext.Regression.Trainers.LightGbm(new LightGbmRegressionTrainer.Options(){NumberOfLeaves=979,NumberOfIterations=4,MinimumExampleCountPerLeaf=33,LearningRate=0.9999997766729865,LabelColumnName=@"fare_amount",FeatureColumnName=@"Features",Booster=new GradientBooster.Options(){SubsampleFraction=0.9215230833534277,FeatureFraction=0.9971551004928644,L1Regularization=1.8538226644037292E-09,L2Regularization=0.9999997766729865},MaximumBinCountPerFeature=281}));
 
             return pipeline;
         }

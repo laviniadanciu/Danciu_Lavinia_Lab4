@@ -5,19 +5,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.ML" Version="4.0.0" />
     <PackageReference Include="Microsoft.ML.FastTree" Version="4.0.0" />
     <PackageReference Include="Microsoft.ML.LightGbm" Version="4.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.1" />
     <PackageReference Include="Plotly.NET" Version="3.0.1" />
   </ItemGroup>
-  <ItemGroup Label="PricePredictionModel">
-    <None Include="PricePredictionModel.mlnet">
+  <ItemGroup Label="TimePredictionModel">
+    <None Include="TimePredictionModel.mlnet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup Label="TimePredictionModel">
-    <None Include="TimePredictionModel.mlnet">
+  <ItemGroup Label="PricePredictionModel">
+    <None Include="PricePredictionModel.mlnet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
